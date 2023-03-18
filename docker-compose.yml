@@ -1,0 +1,24 @@
+version: '3.8'
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: your_mysql_container_name
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: purotore
+      MYSQL_USER: purotore
+      MYSQL_PASSWORD: purotore
+    ports:
+      - '3306:3306'
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+  adminer: # オプション: データベース管理用のWebインターフェース
+    image: adminer
+    container_name: your_adminer_container_name
+    ports:
+      - '8081:8080'
+
+volumes:
+  mysql-data:
